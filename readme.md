@@ -8,5 +8,5 @@
 ## Testing
 
 1. pytest
-2. pylint
+2. pylint . (inside the folder)
 3. pytest --cov
