@@ -8,5 +8,5 @@
 ## Testing
 
 1. pytest
-2. pylint tests/test_calculator.py
-3. pytest --cov
+2. pytest --pylint 
+3. pytest --pylint --cov
