@@ -1,8 +1,10 @@
+'''My Operations test'''
 from decimal import Decimal
 from calculator.calculation import Calculation
 from calculator.operations import add, subtract, multiply, divide
 
 def create_Calculation_Instance(a,b,operation):
+    '''adding a helper funcation to instaniate using create static method'''
     calculation = Calculation.create(Decimal(a),Decimal(b),operation)
     return calculation
 

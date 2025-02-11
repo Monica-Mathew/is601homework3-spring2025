@@ -4,7 +4,6 @@ import pytest
 from calculator.calculation import Calculation
 from calculator.operations import add, subtract, multiply, divide
 
-# pylint: disable=unnecessary-dunder-call, invalid-name
 
 @pytest.mark.parametrize("a, b, operation, expected",[
     (Decimal('10'), Decimal('5'), add, Decimal('15')),
