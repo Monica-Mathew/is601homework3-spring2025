@@ -1,7 +1,6 @@
 from decimal import Decimal
 from typing import Callable
 
-
 class Calculation:
     def __init__(self,a,b,operation):
         self.a=a
