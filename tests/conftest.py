@@ -1,8 +1,8 @@
+# pylint: disable=comparison-with-callable
 '''Conftest file'''
-import pytest
 from decimal import Decimal
-from calculator.operations import add, subtract, multiply, divide
 from faker import Faker
+from calculator.operations import add, subtract, multiply, divide
 
 fake = Faker()
 
@@ -34,10 +34,12 @@ def generate_test_data(num_records):
         yield a,b, operation_name, operation_func, expected
 
 def pytest_addoption(parser): #need to use pytest_addoption for custom command line args
+    '''need to use pytest_addoption for custom command line args'''
     parser.addoption("--num_records", action="store", default=5, type=int, help="Number of test records to generate")
     # stored in pytest memory
 
 def pytest_generate_tests(metafunc):
+    '''Checking if the test is expecting any of the dynamically generated fixtures'''
     if {"a","b","expected"}.intersection(set(metafunc.fixturenames)):
         num_records = metafunc.config.getoption("num_records")
         parameters= list(generate_test_data(num_records))

@@ -1,7 +1,7 @@
 '''My Operations test'''
 from decimal import Decimal
 from calculator.calculation import Calculation
-from calculator.operations import add, subtract, multiply, divide
+from calculator.operations import divide
 
 def test_operation(a,b,operation,expected):
     '''testing various operations'''
