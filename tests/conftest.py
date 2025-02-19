@@ -30,8 +30,7 @@ def generate_test_data(num_records):
                 expected=operation_func(a,b)
         except ZeroDivisionError:
             expected ="ZeroDivisionError"
-        yield a,b, operation_name, operation_func, expected
-
+        yield a,b, operation_name, operation_func, expected 
 
 
 def pytest_addoption(parser): #need to use pytest_addoption for custom command line args
