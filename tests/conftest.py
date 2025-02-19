@@ -1,13 +1,14 @@
-
+'''Conftest file'''
 import pytest
 from decimal import Decimal
 from calculator.operations import add, subtract, multiply, divide
-from faker import Faker;
+from faker import Faker
 
 fake = Faker()
 
 
 def generate_test_data(num_records):
+    '''Operation mapping'''
     operation_mappings ={
         'add':add,
         'subtract': subtract,
@@ -30,8 +31,7 @@ def generate_test_data(num_records):
                 expected=operation_func(a,b)
         except ZeroDivisionError:
             expected ="ZeroDivisionError"
-        yield a,b, operation_name, operation_func, expected 
-
+        yield a,b, operation_name, operation_func, expected
 
 def pytest_addoption(parser): #need to use pytest_addoption for custom command line args
     parser.addoption("--num_records", action="store", default=5, type=int, help="Number of test records to generate")
