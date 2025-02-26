@@ -36,13 +36,18 @@ class App:
         # self.command_handler.register_command("multiply", MultiplyCommand())
         # self.command_handler.register_command("divide", DivideCommand())
 
-        print("Type 'exit' to exit.")
+        print("Type 'exit' to exit, 'menu' to see list of operations")
         while True:  #REPL Read, Evaluate, Print, Loop
 
             command_line_input = input(">>> ").strip()
             if command_line_input == 'exit':
                 print("Exiting Command line")
                 sys.exit(1)
+            if command_line_input == 'menu':
+                print("Printing Menu")
+                for command in self.command_handler.commands:
+                    print(f"- {command}\n")
+                continue
             if(len(command_line_input.split())) != 3:
                 print("Usage : <number1> <number2> <operation>")
                 continue
