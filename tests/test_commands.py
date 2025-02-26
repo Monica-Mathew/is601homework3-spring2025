@@ -1,10 +1,10 @@
 '''My Command test'''
 import pytest
 from app import App
-from app.commands.add import AddCommand
-from app.commands.divide import DivideCommand
-from app.commands.subtract import SubtractCommand
-from app.commands.multiply import MultiplyCommand
+from app.plugins.add import AddCommand
+from app.plugins.divide import DivideCommand
+from app.plugins.subtract import SubtractCommand
+from app.plugins.multiply import MultiplyCommand
 
 def test_add_command(capfd):
     '''Testing add command'''
