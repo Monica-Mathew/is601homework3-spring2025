@@ -3,14 +3,16 @@ import sys
 import pkgutil
 from app.commands import CommandHandler
 from app.commands import Command
-from app.plugins.add import AddCommand
-from app.plugins.divide import DivideCommand
-from app.plugins.subtract import SubtractCommand
-from app.plugins.multiply import MultiplyCommand
+import multiprocessing
 
 class App:
     def __init__(self): # Constructor
         self.command_handler = CommandHandler()
+    
+    def run_in_process(self, target, *args): # need to test this by adding pid
+        process = multiprocessing.Process(target=target, args=args)
+        process.start()
+        process.join()  
 
     def load_plugins(self):
         # Dynamically load all plugins in the plugins directory
@@ -46,7 +48,8 @@ class App:
                 continue
             
             num1, num2, operation = command_line_input.split()
-            self.command_handler.execute_command(operation, num1, num2)
+            # self.command_handler.execute_command(operation, num1, num2)
+            self.run_in_process(self.command_handler.execute_command, operation, num1,num2)
 
 
 
