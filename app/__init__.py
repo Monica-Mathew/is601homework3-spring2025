@@ -52,6 +52,7 @@ class App:
 
     def start(self):
         self.load_plugins()
+        logging.info("Application started. Type 'exit' to exit.")
         # Register commands here - now its dynamically loading
         # self.command_handler.register_command("add", AddCommand())
         # self.command_handler.register_command("subtract", SubtractCommand())
