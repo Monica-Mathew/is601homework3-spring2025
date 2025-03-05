@@ -52,6 +52,7 @@ class App:
                     try:
                         if issubclass(item, (Command)):  # Assuming a BaseCommand class exists
                             self.command_handler.register_command(plugin_name, item())
+                            logging.info(f"Command '{plugin_name}' from plugin '{plugin_name}' registered.")
                     except TypeError:
                         continue  # If item is not a class or unrelated class, just ignore
 
