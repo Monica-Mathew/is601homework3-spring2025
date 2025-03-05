@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+import logging
 
 class Command(ABC):
     @abstractmethod
@@ -17,5 +18,6 @@ class CommandHandler:
             command = self.commands[command_name]
             command.execute(num1, num2)
         except KeyError:
+            logging.info("Application usage - incorrect command")
             print(f"No such command: {command_name}")
 

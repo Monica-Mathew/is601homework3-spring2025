@@ -15,7 +15,7 @@ class App:
         self.configure_logging()
         load_dotenv() #loads from .env file contents
         self.settings = self.load_environment_variables()
-        self.settings.setdefault('ENVIRONMENT', 'PRODUCTION')
+        self.settings.setdefault('ENVIRONMENT', 'TESTING') # sets default only if it is missing, right now in .env I have it as DEVELOPMENT
         self.command_handler = CommandHandler()
     
     def configure_logging(self):
@@ -30,6 +30,10 @@ class App:
         settings = {key: value for key, value in os.environ.items()}
         logging.info("Environment variables loaded.")
         return settings
+    
+    def get_environment_variable(self, envVar: str ='ENVIRONMENT'):
+        logging.info("Fetching environmnet variable")
+        return self.settings[envVar]
     
     def run_in_process(self, target, *args): # need to test this by adding pid
         process = multiprocessing.Process(target=target, args=args)
@@ -61,9 +65,9 @@ class App:
 
         print("Type 'exit' to exit, 'menu' to see list of operations")
         while True:  #REPL Read, Evaluate, Print, Loop
-
             command_line_input = input(">>> ").strip()
             if command_line_input == 'exit':
+                logging.info("Application exited using 'exit' command")
                 print("Exiting Command line")
                 sys.exit(1)
             if command_line_input == 'menu':
@@ -72,12 +76,14 @@ class App:
                     print(f"- {command}\n")
                 continue
             if(len(command_line_input.split())) != 3:
+                logging.info("Application usage incorrect")
                 print("Usage : <number1> <number2> <operation>")
                 continue
             
             num1, num2, operation = command_line_input.split()
             # self.command_handler.execute_command(operation, num1, num2)
             self.run_in_process(self.command_handler.execute_command, operation, num1,num2)
+  
 
 
 
