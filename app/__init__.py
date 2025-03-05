@@ -36,6 +36,7 @@ class App:
         return self.settings[envVar]
     
     def run_in_process(self, target, *args): # need to test this by adding pid
+        logging.info("Starting new process with target: %s and args %s", target.__name__, ', '.join(map(str, args)))
         process = multiprocessing.Process(target=target, args=args)
         process.start()
         process.join()  
